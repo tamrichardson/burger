@@ -2,6 +2,10 @@ body {
     background-image: url(https://images.unsplash.com/photo-1530554764233-e79e16c91d08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80)no-repeat center center fixed;
     object-fit: cover;
 }
+h1 {
+    text-align: center;
+    
+}
 
 li {
     padding: 5px;
