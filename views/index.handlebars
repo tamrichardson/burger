@@ -6,83 +6,82 @@
 </div>
 
 <h1>Can I take your order?</h1>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Create your own</h2>
+        <form id="create-burger" class="create-form">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Create your own</h2>
-            <form id="create-burger" class="create-form">
+            <div id="create-area" class="form-group">
+                <label id="burger-name" for="ca">Burger Name:</label>
+                <input type="text" id="ca" name="name">
+            </div>
+            <button id="create-btn" type="submit">Create</button>
+        </form>
 
-                <div class="form-group">
-                    <label for="ca">Burger Name:</label>
-                    <input type="text" id="ca" name="name">
-                </div>
-                <button type="submit">Create</button>
-            </form>
-
-        </div>
-        <div class="col-md-4" id="specials">
-            <h2>Specials</h2>
-            <ul>
-                {{#each burgers}}
-                {{#unless devoured}}
-                {{> burgers/burger-block devoured=true}}
-                {{/unless}}
-                {{/each}}
-            </ul>
-        </div>
-
-        <div class="col-sm-4" id="eaten-burger">
-            <h2>Eaten</h2>
-            <ul>
-                {{#each burgers}}
-                {{#if devoured}}
-                {{> burgers/burger-block devoured=false}}
-                {{/if}}
-                {{/each}}
-            </ul>
-        </div>
+    </div>
+    <div class="col-md-4" id="specials">
+        <h2>Specials</h2>
+        <ul>
+            {{#each burgers}}
+            {{#unless devoured}}
+            {{> burgers/burger-block devoured=true}}
+            {{/unless}}
+            {{/each}}
+        </ul>
     </div>
 
-    <script type="text/javascript">
-        $("#create-burger").on("submit", function (event) {
-            event.preventDefault();
-            var newBurger = {
-                name: $("#create-burger [name=name]").val().trim()
-            };
-            $.ajax("/api/burgers", {
-                type: "POST",
-                data: newBurger
-            }).then(
-                function () {
-                    console.log("Created New Burger");
-                    location.reload();
-                }
-            );
-        });
-        $(".change-devoured").on("click", function (event) {
-            var id = $(this).data("id");
-            var ate = $(this).data("newdevoured");
-            var devouredState = {
-                devoured: ate
-            };
-            $.ajax("/api/burgers/" + id, {
-                type: "PUT",
-                data: devouredState
-            }).then(function () {
-                console.log("Changed Devoured to true ", ate);
+    <div class="col-sm-4" id="eaten-burger">
+        <h2>Eaten Burgers</h2>
+        <ul>
+            {{#each burgers}}
+            {{#if devoured}}
+            {{> burgers/burger-block devoured=false}}
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#create-burger").on("submit", function (event) {
+        event.preventDefault();
+        var newBurger = {
+            name: $("#create-burger [name=name]").val().trim()
+        };
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newBurger
+        }).then(
+            function () {
+                console.log("Created New Burger");
                 location.reload();
-            })
-        });
-        $("#delete-Burger").on("click", function (event) {
-            var id = $(this).data("id");
-            $.ajax("/api/burgers/" + id, {
-                type: "DELETE"
-            }).then(
-                function () {
-                    console.log("Deleted Burger: ", id);
-                    location.reload();
-                }
-            );
-        });
-    </script>
+            }
+        );
+    });
+    $(".change-devoured").on("click", function (event) {
+        var id = $(this).data("id");
+        var ate = $(this).data("newdevoured");
+        var devouredState = {
+            devoured: ate
+        };
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: devouredState
+        }).then(function () {
+            console.log("Changed Devoured to true ", ate);
+            location.reload();
+        })
+    });
+    $(".delete-burger").on("click", function (event) {
+        var id = $(this).data("id");
+        $.ajax("/api/burgers/" + id, {
+            type: "DELETE"
+        }).then(
+            function () {
+                console.log("Deleted Burger: ", id);
+                location.reload();
+            }
+        );
+    });
+</script>

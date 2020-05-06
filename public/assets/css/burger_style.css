@@ -8,7 +8,9 @@ body {
     background-position: center center;
 }
 .jumbotron{
-    background-color: green;
+    background-color: rgb(27, 75, 27);
+    font-family: 'Bree Serif', serif;
+
 }
 
 button {
@@ -17,30 +19,48 @@ button {
 h1 {
     color: yellow;
     text-align: center;
+    font-family: 'Bree Serif', serif;
+}
+
+h2 {
+    color: white;
+    text-align: center; 
+    font-size: 50px;
+    font-family: 'Bree Serif', serif;
+    padding-bottom: 25px;
 }
 p {
     color: yellow;
-    font-size: 50px;
+    font-family: 'Bree Serif', serif;
 }
 
+#burger-name {
+    color: white;
+    font-size: 20px;
+    font-family: 'Bree Serif', serif;
+}
+
+#create-area {
+    margin-left: 100px;
+}
+#create-btn { 
+    margin-left: 100px;
+}
 li {
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     padding: 5px;
     margin: 5px;
-    
+    font-family: 'Bree Serif', serif;
+    padding-bottom: 15px;
   }
   
   .label {
     font-weight: bold;
+    font-family: 'Bree Serif', serif;
+   
   }
-  
-  .create-update-form {
-    padding: 5px;
-    margin: 5px;
-    background: aqua;
-  }
-  
+ 
   .form-group {
     margin-bottom: 5px;
   }
